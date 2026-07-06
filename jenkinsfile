@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone') {
+            steps {
+                echo 'Cloning Repository'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                sudo cp -r * /var/www/html/
+                sudo systemctl restart httpd
+                '''
+            }
+        }
+
+    }
+}
